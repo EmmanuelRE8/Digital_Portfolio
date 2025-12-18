@@ -1,4 +1,4 @@
-# 🎨📊 Digital Portfolio — BI, Analytics & Data Visualization
+# 🎨📊 Digital Portfolio (BI, Analytics & Data Visualization)
 
 This repository hosts my **professional digital portfolio**, built and deployed using **GitHub Pages**.  
 It brings together selected work across **Business Intelligence, Analytics Engineering, and Data Visualization**, combining production-style dashboards with more narrative and creative visualization projects.
@@ -111,5 +111,5 @@ The purpose of this portfolio is to demonstrate:
 
 ---
 
-© Emmanuel Rueda Escalona  
+© Emmanuel Rueda 
 This portfolio is maintained as a living professional showcase.
