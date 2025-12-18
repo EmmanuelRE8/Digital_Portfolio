@@ -12,7 +12,7 @@ from **decision-ready dashboards and pipelines** to **story-driven visual commun
 
 The portfolio is available at:
 
-👉 **[View the live portfolio](https://<your-username>.github.io/Digital-Portfolio/)**
+🔗 **[OPEN DIGITAL PORTFOLIO](https://<your-username>.github.io/Digital-Portfolio/)**
 
 Each section is curated for a specific audience while sharing a consistent visual identity.
 
