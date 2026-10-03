@@ -61,7 +61,7 @@ function computeAll() {
 
 const pad = (n) => String(n).padStart(2, '0');
 
-const LABELS = ['Living for', 'Professional experience', 'Life spent learning', 'DB safety streak'];
+const LABELS = ['Time played (IRL)', 'Professional experience', 'Life spent learning & working', 'Days without breaking prod'];
 
 export default function DynamicKPIs() {
   // Start empty so the static HTML matches the first client render (no hydration mismatch)
@@ -87,12 +87,11 @@ export default function DynamicKPIs() {
   }
 
   const { age, work, lifePercent, dbStreak } = kpis;
-  const [percentWhole, percentDecimals] = lifePercent.toFixed(6).split('.');
 
   return (
     <div className="kpi-container">
       <div className="kpi-card">
-        <div className="kpi-label">⏱️ Living for</div>
+        <div className="kpi-label">⏱️ Time played (IRL)</div>
         <div className="kpi-value">
           {age.years}<span className="kpi-unit">y</span> {age.months}<span className="kpi-unit">m</span>{' '}
           {age.days}<span className="kpi-unit">d</span>
@@ -113,20 +112,17 @@ export default function DynamicKPIs() {
       <div className="kpi-card">
         <div className="kpi-label">🧠 Life spent learning &amp; working</div>
         <div className="kpi-value">
-          {percentWhole}.{percentDecimals.slice(0, 1)}
-          <span className="kpi-decimals">{percentDecimals.slice(1)}</span>
+          {lifePercent.toFixed(1)}
           <span className="kpi-unit">%</span>
         </div>
         <div className="kpi-sub">8 h/day since age 7</div>
       </div>
 
       <div className="kpi-card kpi-card--achievement">
-        <div className="kpi-label">🛡️ Without breaking production</div>
-        <div className="kpi-value">
-          {dbStreak.days}<span className="kpi-unit">days</span>
-        </div>
+        <div className="kpi-label">🛡️ Days without breaking <code>prod</code></div>
+        <div className="kpi-value">{dbStreak.days}</div>
         <div className="kpi-sub">
-          {pad(dbStreak.hours)}:{pad(dbStreak.minutes)}:{pad(dbStreak.seconds)} · streak active
+          +{pad(dbStreak.hours)}:{pad(dbStreak.minutes)}:{pad(dbStreak.seconds)} · zero rollbacks, no hotfix at 3 AM
         </div>
       </div>
     </div>
