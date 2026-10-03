@@ -1,0 +1,243 @@
+---
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+
+const professional = [
+  {
+    name: 'BEATS System',
+    org: 'Ticketmaster · Mexico & LatAm',
+    summary: 'BI Effectiveness and Automation Tracking System: a BI request management platform with automated forms and intelligent triage.',
+    kpi: 'Effectiveness 80% → 98%',
+    highlights: [
+      'Reduced average delivery time by 2 days',
+      'Automated request routing and status tracking',
+      'Feedback loops and performance monitoring',
+    ],
+    tech: ['Smartsheet', 'Automation', 'Process Design', 'Leadership'],
+  },
+  {
+    name: 'Cloud & Data Migration',
+    org: 'Ticketmaster · Mexico',
+    summary: 'End-to-end migration from on-prem SQL Server to Databricks & BigQuery, enabling governed analytics.',
+    kpi: 'Data accuracy 80% → 99%',
+    highlights: [
+      'Migrated 2017–2024 historical data (multi-TB)',
+      'PySpark ETL pipelines',
+      'Governance framework and data quality checks',
+      'Automated Box integration for ingestion',
+    ],
+    tech: ['Databricks', 'BigQuery', 'PySpark', 'Data Quality'],
+  },
+  {
+    name: 'Pricing & Revenue Analytics',
+    org: 'Ticketmaster · Mexico',
+    summary: 'Pricing elasticity and revenue optimization models, including substitution effects between ticket tiers and promotions.',
+    highlights: [
+      'Elasticity analysis across ticket categories',
+      'Promotion effectiveness measurement',
+      'Revenue forecasting and scenario modeling',
+      'Dynamic pricing recommendations',
+    ],
+    tech: ['Pricing Analytics', 'Python', 'Statistics', 'Forecasting'],
+  },
+  {
+    name: 'Customer Segmentation & RFM',
+    org: 'Ticketmaster · Mexico & LatAm',
+    summary: 'RFM segmentation and CLV models for customer targeting and personalization.',
+    kpi: '500k+ customers segmented',
+    highlights: [
+      'CLV lifetime value modeling',
+      'Cohort analysis and churn prediction',
+      'Funnel and conversion analytics',
+    ],
+    tech: ['RFM', 'CLV', 'Segmentation', 'GA4'],
+  },
+];
+
+const academic = [
+  {
+    name: 'Semantic AI Framework',
+    org: 'Capstone · Ontario Tech University',
+    summary: 'AI-powered job matching using NLP embeddings, fine-tuned MiniLM and explainable, human-in-the-loop recommendations.',
+    highlights: [
+      'Candidate profiling & job deduplication',
+      'Cosine similarity ranking & top-K recommendations',
+      'Explainability & fairness guardrails',
+      'No automated hiring decisions: human oversight mandatory',
+    ],
+    tech: ['NLP', 'Embeddings', 'AI/ML', 'Responsible AI'],
+  },
+  {
+    name: 'NLP Job Classification',
+    org: 'Coursework · Ontario Tech University',
+    summary: 'Job vacancy classification system using text processing and ML classifiers.',
+    kpi: '93% accuracy',
+    highlights: ['Text preprocessing & feature extraction', 'Cross-validation and performance metrics'],
+    tech: ['NLP', 'Scikit-learn', 'Classification'],
+  },
+  {
+    name: 'Retail & Customer Behaviour',
+    org: 'Team project · Ontario Tech University',
+    summary: 'Multi-source retail analytics combining 300k+ records with multi-year Kaggle data for trends, seasonality and forecasting.',
+    highlights: ['Revenue forecasting and trend analysis', 'Customer & product segmentation'],
+    tech: ['Python', 'Pandas', 'Forecasting'],
+  },
+  {
+    name: 'Location Recommendation Platform',
+    org: 'Coursework · Ontario Tech University',
+    summary: 'Location discovery recommender built on collaborative filtering and similarity approaches.',
+    kpi: '834k+ records',
+    highlights: ['Large-scale dataset processing'],
+    tech: ['Recommenders', 'Python'],
+  },
+  {
+    name: 'Diabetes Risk Analysis',
+    org: 'Coursework · Ontario Tech University',
+    summary: 'Statistical analysis of clinical and lifestyle risk factors with careful outlier handling and no data leakage.',
+    highlights: ['Regression modeling with interpretation', 'Business outcome communication'],
+    tech: ['Statistics', 'Regression', 'Data Cleaning'],
+  },
+  {
+    name: 'Time-Series Forecasting',
+    org: 'Coursework · Ontario Tech University',
+    summary: "Classical forecasting with simple & double exponential smoothing and Holt's method.",
+    highlights: ['Cross-validation and accuracy metrics', 'Model selection and comparison'],
+    tech: ['Forecasting', 'Time Series', 'Python'],
+  },
+];
+
+const sections = [
+  { title: 'Professional missions', projects: professional },
+  { title: 'Academic experiments', projects: academic },
+];
+---
+
+<PortfolioLayout title="Project Lab">
+  <div class="node-container">
+    <header class="node-header">
+      <p class="hub-eyebrow">// node 01</p>
+      <h1>⚡ Project Lab</h1>
+      <p>Archive of shipped projects & analyses delivered.</p>
+    </header>
+
+    {sections.map((section) => (
+      <section class="lab-section">
+        <h2>{section.title}</h2>
+        <div class="projects-grid">
+          {section.projects.map((project) => (
+            <details class="project-card glass-card">
+              <summary>
+                <span class="project-org">{project.org}</span>
+                <h3>{project.name}</h3>
+                <p>{project.summary}</p>
+                {project.kpi && <span class="project-kpi">{project.kpi}</span>}
+                <ul class="tech-badges">
+                  {project.tech.map((t) => <li class="badge">{t}</li>)}
+                </ul>
+                <span class="project-toggle" aria-hidden="true"></span>
+              </summary>
+              <ul class="project-highlights">
+                {project.highlights.map((h) => <li>{h}</li>)}
+              </ul>
+            </details>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</PortfolioLayout>
+
+<style>
+  .lab-section + .lab-section {
+    margin-top: 3.5rem;
+  }
+
+  .lab-section h2 {
+    color: var(--neon-blue);
+    font-size: 1.6rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: 1.25rem;
+    align-items: start;
+  }
+
+  .project-card {
+    padding: 1.5rem;
+  }
+
+  .project-card:hover,
+  .project-card[open] {
+    border-color: var(--border-emerald-hover);
+    box-shadow: var(--glow);
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+  }
+
+  summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .project-org {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-emerald);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .project-card h3 {
+    font-size: 1.35rem;
+    margin: 0.35rem 0 0.5rem;
+  }
+
+  .project-card p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .project-kpi {
+    display: inline-block;
+    margin-top: 0.85rem;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--neon-pink);
+    text-shadow: 0 0 10px rgba(240, 33, 159, 0.4);
+  }
+
+  .project-toggle {
+    display: block;
+    margin-top: 1rem;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--neon-blue);
+  }
+
+  .project-toggle::after {
+    content: '+ details';
+  }
+
+  .project-card[open] .project-toggle::after {
+    content: '− close';
+  }
+
+  .project-highlights {
+    margin: 1rem 0 0;
+    padding: 1rem 0 0 1.1rem;
+    border-top: 1px solid var(--border-emerald);
+    color: var(--text-primary);
+  }
+
+  .project-highlights li + li {
+    margin-top: 0.35rem;
+  }
+</style>

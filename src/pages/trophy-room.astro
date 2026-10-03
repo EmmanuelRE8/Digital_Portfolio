@@ -1,0 +1,338 @@
+---
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+
+const education = [
+  { icon: '🔬', title: 'MBAI: Business Analytics & AI', school: 'Ontario Tech University', year: '2026', rarity: 'Legendary' },
+  { icon: '📚', title: "Master's in Prospective Strategy", school: 'Tecnológico de Monterrey', year: '2020', rarity: 'Epic' },
+  { icon: '🎓', title: 'BA in International Relations', school: 'ITAM', year: '2018', rarity: 'Rare' },
+];
+
+const languages = [
+  { code: 'ES', name: 'Spanish', level: 'Native', xp: 100 },
+  { code: 'EN', name: 'English', level: 'Advanced (Professional)', xp: 90 },
+  { code: 'PT', name: 'Portuguese', level: 'Intermediate', xp: 60 },
+];
+
+const skillTree = [
+  { branch: 'Analytics & BI', skills: ['Tableau', 'Looker Studio', 'GA4', 'Funnel & Cohort', 'RFM & CLV', 'Churn Prediction'] },
+  { branch: 'Data Platforms', skills: ['BigQuery', 'Databricks', 'SQL Server', 'Smartsheet', 'ETL Pipelines'] },
+  { branch: 'Programming', skills: ['Python', 'SQL', 'PySpark', 'JavaScript', 'Pandas'] },
+  { branch: 'ML & AI', skills: ['Scikit-learn', 'TensorFlow', 'NLP & Embeddings', 'Forecasting', 'Recommenders'] },
+  { branch: 'Methods', skills: ['A/B Testing', 'Pricing Elasticity', 'Statistics', 'Data Storytelling', 'Responsible AI'] },
+];
+---
+
+<PortfolioLayout title="Trophy Room">
+  <div class="node-container">
+    <header class="node-header">
+      <p class="hub-eyebrow">// node 02</p>
+      <h1>🏆 Trophy Room</h1>
+      <p>Degrees, certifications & skills unlocked.</p>
+    </header>
+
+    <section class="trophy-section">
+      <h2>🎓 Education</h2>
+      <div class="trophy-list">
+        {education.map((item) => (
+          <div class="trophy-badge glass-card unlock">
+            <div class="trophy-icon" aria-hidden="true">{item.icon}</div>
+            <div class="trophy-text">
+              <span class="trophy-unlocked">Achievement unlocked · {item.year}</span>
+              <h3>{item.title}</h3>
+              <p>{item.school}</p>
+            </div>
+            <span class={`trophy-rarity rarity-${item.rarity.toLowerCase()}`}>{item.rarity}</span>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="trophy-section">
+      <h2>🌍 Languages</h2>
+      <div class="lang-grid">
+        {languages.map((lang) => (
+          <div class="lang-card glass-card unlock">
+            <span class="lang-badge">{lang.code}</span>
+            <div class="lang-info">
+              <h3>{lang.name}</h3>
+              <p>{lang.level}</p>
+              <div class="xp-bar" role="img" aria-label={`${lang.xp}% proficiency`}>
+                <span style={`--xp: ${lang.xp}%`}></span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section class="trophy-section">
+      <h2>⚙️ Skill Tree</h2>
+      <div class="skill-tree">
+        {skillTree.map((branch) => (
+          <div class="skill-branch glass-card unlock">
+            <h3>{branch.branch}</h3>
+            <ul class="skills-grid">
+              {branch.skills.map((skill) => <li class="skill-tag">{skill}</li>)}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+</PortfolioLayout>
+
+<script>
+  // Trophies "unlock" with a sparkle as they scroll into view
+  const items = document.querySelectorAll('.unlock');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('unlocked');
+            observer.unobserve(entry.target);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+    items.forEach((item) => observer.observe(item));
+  } else {
+    items.forEach((item) => item.classList.add('unlocked'));
+  }
+</script>
+
+<style>
+  .trophy-section + .trophy-section {
+    margin-top: 3rem;
+  }
+
+  .trophy-section h2 {
+    font-size: 1.6rem;
+    color: var(--neon-blue);
+    margin-bottom: 1.25rem;
+  }
+
+  /* Unlock animation */
+  .unlock {
+    position: relative;
+    opacity: 0;
+    transform: translateY(16px) scale(0.97);
+  }
+
+  .unlock.unlocked {
+    animation: unlock 0.6s ease forwards;
+  }
+
+  .unlock.unlocked::after {
+    content: '✦';
+    position: absolute;
+    top: -0.6rem;
+    right: 1rem;
+    color: #facc15;
+    font-size: 1.1rem;
+    pointer-events: none;
+    animation: sparkle 1.2s ease forwards;
+  }
+
+  @keyframes unlock {
+    to { opacity: 1; transform: none; }
+  }
+
+  @keyframes sparkle {
+    0% { opacity: 0; transform: scale(0.3) rotate(0deg); }
+    40% { opacity: 1; transform: scale(1.4) rotate(90deg); }
+    100% { opacity: 0; transform: scale(0.6) rotate(180deg); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .unlock,
+    .unlock.unlocked {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+
+    .unlock.unlocked::after {
+      display: none;
+    }
+  }
+
+  /* Education */
+  .trophy-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .trophy-badge {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.25rem 1.5rem;
+    border-color: rgba(240, 33, 159, 0.25);
+  }
+
+  .trophy-badge:hover {
+    border-color: rgba(240, 33, 159, 0.6);
+    box-shadow: var(--glow-pink);
+  }
+
+  .trophy-icon {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3.5rem;
+    height: 3.5rem;
+    font-size: 1.8rem;
+    border-radius: 50%;
+    background: rgba(240, 33, 159, 0.1);
+    border: 1px solid rgba(240, 33, 159, 0.4);
+  }
+
+  .trophy-text {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .trophy-unlocked {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--accent-emerald);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .trophy-text h3 {
+    font-size: 1.25rem;
+    margin: 0.15rem 0;
+  }
+
+  .trophy-text p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  .trophy-rarity {
+    flex: none;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    border: 1px solid currentColor;
+  }
+
+  .rarity-legendary { color: #facc15; }
+  .rarity-epic { color: var(--neon-purple); }
+  .rarity-rare { color: var(--neon-blue); }
+
+  /* Languages */
+  .lang-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 1rem;
+  }
+
+  .lang-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+
+  .lang-card:hover {
+    border-color: var(--border-emerald-hover);
+    box-shadow: var(--glow);
+  }
+
+  .lang-badge {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 3.25rem;
+    height: 3.25rem;
+    border-radius: 50%;
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--neon-blue);
+    background: rgba(0, 212, 255, 0.12);
+    border: 1px solid rgba(0, 212, 255, 0.5);
+  }
+
+  .lang-info {
+    flex: 1;
+  }
+
+  .lang-info h3 {
+    font-size: 1.1rem;
+    margin: 0;
+  }
+
+  .lang-info p {
+    margin: 0 0 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+  }
+
+  .xp-bar {
+    height: 6px;
+    border-radius: 3px;
+    background: rgba(16, 185, 129, 0.12);
+    overflow: hidden;
+  }
+
+  .xp-bar span {
+    display: block;
+    height: 100%;
+    width: var(--xp);
+    background: linear-gradient(90deg, var(--accent-emerald), var(--neon-blue));
+  }
+
+  /* Skill tree */
+  .skill-tree {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+    gap: 1rem;
+  }
+
+  .skill-branch {
+    padding: 1.25rem;
+  }
+
+  .skill-branch h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .skill-tag {
+    padding: 0.35rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    color: var(--accent-light);
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .skill-tag:hover {
+    background: rgba(16, 185, 129, 0.25);
+    border-color: rgba(16, 185, 129, 0.8);
+    box-shadow: var(--glow);
+  }
+
+  @media (max-width: 520px) {
+    .trophy-badge {
+      flex-wrap: wrap;
+    }
+  }
+</style>

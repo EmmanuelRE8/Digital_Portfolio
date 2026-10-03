@@ -1,0 +1,250 @@
+---
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+
+const stats = [
+  { label: 'Leadership', value: 90 },
+  { label: 'Technical Depth', value: 85 },
+  { label: 'Communication', value: 88 },
+  { label: 'Problem Solving', value: 92 },
+];
+
+const attributes = [
+  { label: 'Class', value: 'BI & Analytics Leader' },
+  { label: 'Base', value: 'Oshawa, ON, Canada' },
+  { label: 'Guilds', value: 'Ticketmaster · TOP Agency · Cuadrante' },
+  { label: 'Languages', value: 'ES · EN · PT' },
+];
+
+const abilities = ['Strategic Thinker', 'Team Builder', 'Data Storyteller', 'System Designer', 'Mentor', 'Problem Solver'];
+---
+
+<PortfolioLayout title="Character Card">
+  <div class="node-container">
+    <header class="node-header">
+      <p class="hub-eyebrow">// node 03</p>
+      <h1>👤 Character Card</h1>
+      <p>My player profile: class, stats & special abilities.</p>
+    </header>
+
+    <article class="profile-card glass-card">
+      <div class="profile-header">
+        <div class="profile-avatar" aria-hidden="true">ER</div>
+        <div>
+          <span class="profile-player">Player 1</span>
+          <h2>Emmanuel Rueda Escalona</h2>
+          <p class="role-title">BI & Analytics Leader · Data Strategist</p>
+        </div>
+      </div>
+
+      <dl class="attributes">
+        {attributes.map((attr) => (
+          <div>
+            <dt>{attr.label}</dt>
+            <dd>{attr.value}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <section>
+        <h3>Stats</h3>
+        <div class="stats-grid">
+          {stats.map((stat) => (
+            <div class="stat-box">
+              <div class="stat-row">
+                <span class="stat-label">{stat.label}</span>
+                <span class="stat-value">{stat.value}</span>
+              </div>
+              <div class="stat-bar" role="img" aria-label={`${stat.label}: ${stat.value} out of 100`}>
+                <span class="stat-fill" style={`--value: ${stat.value}%`}></span>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <h3>Backstory</h3>
+        <p>
+          Data analytics and BI leader with 11+ years of professional experience, 5+ of them leading
+          analytics. I turn messy data into strategic insights across the full stack: pipeline design,
+          modeling, visualization and stakeholder communication. For me, great analytics is not about
+          dashboards; it's about clarity, trust and impact.
+        </p>
+      </section>
+
+      <section>
+        <h3>Special Abilities</h3>
+        <ul class="traits-list">
+          {abilities.map((ability) => <li class="trait">{ability}</li>)}
+        </ul>
+      </section>
+    </article>
+  </div>
+</PortfolioLayout>
+
+<style>
+  .profile-card {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: clamp(1.5rem, 4cqi, 2.75rem);
+    border-color: rgba(0, 212, 255, 0.25);
+    box-shadow: 0 0 40px rgba(0, 212, 255, 0.08);
+  }
+
+  .profile-card section {
+    margin-top: 2rem;
+  }
+
+  .profile-card h3 {
+    color: var(--neon-blue);
+    font-size: 1.25rem;
+    margin-bottom: 0.85rem;
+  }
+
+  .profile-card p {
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .profile-header {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-emerald);
+  }
+
+  .profile-avatar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 16px;
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--bg-dark);
+    background: linear-gradient(135deg, var(--accent-emerald), var(--neon-blue));
+    box-shadow: var(--glow-blue);
+  }
+
+  .profile-player {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--neon-pink);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .profile-header h2 {
+    font-size: clamp(1.5rem, 4cqi, 2.25rem);
+    margin: 0.15rem 0;
+  }
+
+  .profile-card .role-title {
+    color: var(--neon-blue);
+    font-weight: 600;
+  }
+
+  .attributes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(180px, 100%), 1fr));
+    gap: 1rem;
+    margin: 1.5rem 0 0;
+  }
+
+  .attributes dt {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-emerald);
+  }
+
+  .attributes dd {
+    margin: 0.15rem 0 0;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
+    gap: 1.25rem 2rem;
+  }
+
+  .stat-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.4rem;
+  }
+
+  .stat-label {
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-secondary);
+  }
+
+  .stat-value {
+    font-family: var(--font-mono);
+    font-weight: 600;
+    color: var(--accent-light);
+  }
+
+  .stat-bar {
+    height: 10px;
+    border-radius: 5px;
+    background: rgba(16, 185, 129, 0.12);
+    overflow: hidden;
+  }
+
+  .stat-fill {
+    display: block;
+    height: 100%;
+    width: var(--value);
+    border-radius: 5px;
+    background: linear-gradient(90deg, var(--accent-emerald), var(--neon-blue));
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    animation: fillBar 1.2s ease-out both;
+  }
+
+  @keyframes fillBar {
+    from { width: 0; }
+  }
+
+  .traits-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .trait {
+    padding: 0.4rem 0.85rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    color: #ff6ec7;
+    background: rgba(240, 33, 159, 0.12);
+    border: 1px solid rgba(240, 33, 159, 0.4);
+    transition: all 0.3s ease;
+  }
+
+  .trait:hover {
+    box-shadow: var(--glow-pink);
+  }
+
+  @media (max-width: 520px) {
+    .profile-header {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .stat-fill {
+      animation: none;
+    }
+  }
+</style>

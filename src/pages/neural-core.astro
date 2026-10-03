@@ -1,0 +1,62 @@
+---
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+---
+
+<PortfolioLayout title="Neural Core">
+  <div class="node-container">
+    <header class="node-header">
+      <p class="hub-eyebrow">// node 05 · phase 2</p>
+      <h1>🧠 Neural Core</h1>
+      <p>Ask, learn, explore. Mr Code's full chat brain is still booting up.</p>
+    </header>
+
+    <div class="core-status glass-card">
+      <p class="core-line">&gt; loading neural weights<span class="dots">...</span></p>
+      <p class="core-line">&gt; status: <strong>under construction</strong></p>
+      <p class="core-line">
+        &gt; meanwhile, try
+        <a href="https://emmanuelre8.github.io/PAIR_Bot/" target="_blank" rel="noopener noreferrer">PAIR Bot</a>,
+        my Personal AI Résumé.
+      </p>
+    </div>
+  </div>
+</PortfolioLayout>
+
+<style>
+  .core-status {
+    max-width: 640px;
+    padding: 1.5rem 1.75rem;
+    font-family: var(--font-mono);
+  }
+
+  .core-line {
+    margin: 0;
+    color: var(--accent-light);
+  }
+
+  .core-line + .core-line {
+    margin-top: 0.5rem;
+  }
+
+  .core-line strong {
+    color: var(--neon-pink);
+  }
+
+  .core-line a {
+    color: var(--neon-blue);
+  }
+
+  .dots {
+    animation: blinkDots 1.2s steps(2) infinite;
+  }
+
+  @keyframes blinkDots {
+    50% { opacity: 0; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .dots {
+      animation: none;
+    }
+  }
+</style>

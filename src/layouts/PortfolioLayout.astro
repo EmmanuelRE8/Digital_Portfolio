@@ -1,5 +1,7 @@
 ---
 import StarfieldBackground from '../components/StarfieldBackground.jsx';
+import InteractiveMap from '../components/InteractiveMap.jsx';
+import MrCodeGuide from '../components/MrCodeGuide.jsx';
 import '../styles/portfolio.css';
 
 interface Props {
@@ -12,9 +14,8 @@ const {
   description = "Emmanuel Rueda's Data Analytics & BI Portfolio",
 } = Astro.props;
 
-// Side columns only render when a page fills them (map + Mr Code arrive in Session 3)
-const hasMap = Astro.slots.has('map');
-const hasGuide = Astro.slots.has('guide');
+// Normalized path ("/project-lab/" -> "/project-lab") so map + guide know where we are
+const currentPath = Astro.url.pathname.replace(/\/+$/, '') || '/';
 ---
 
 <!doctype html>
@@ -35,11 +36,44 @@ const hasGuide = Astro.slots.has('guide');
   <body>
     <div class="portfolio-container">
       <StarfieldBackground client:load />
-      <div class:list={['portfolio-shell', { 'has-map': hasMap, 'has-guide': hasGuide }]}>
-        {hasMap && <aside class="portfolio-map"><slot name="map" /></aside>}
-        <main class="portfolio-main"><slot /></main>
-        {hasGuide && <aside class="portfolio-guide"><slot name="guide" /></aside>}
+
+      <button class="map-toggle" type="button" aria-controls="node-map" aria-expanded="false">
+        <span aria-hidden="true">◎</span> Map
+      </button>
+      <div class="map-backdrop" hidden></div>
+
+      <div class="portfolio-grid">
+        <aside id="node-map" class="sidebar-left" aria-label="Node map">
+          <InteractiveMap client:load currentPath={currentPath} />
+        </aside>
+
+        <main class="main-content">
+          <slot />
+        </main>
+
+        <aside class="sidebar-right" aria-label="Mr Code guide">
+          <MrCodeGuide client:load currentPath={currentPath} />
+        </aside>
       </div>
     </div>
+
+    <script>
+      // Map drawer on tablet/mobile
+      const toggle = document.querySelector<HTMLButtonElement>('.map-toggle')!;
+      const map = document.getElementById('node-map')!;
+      const backdrop = document.querySelector<HTMLDivElement>('.map-backdrop')!;
+
+      function setOpen(open: boolean) {
+        map.classList.toggle('open', open);
+        backdrop.hidden = !open;
+        toggle.setAttribute('aria-expanded', String(open));
+      }
+
+      toggle.addEventListener('click', () => setOpen(!map.classList.contains('open')));
+      backdrop.addEventListener('click', () => setOpen(false));
+      document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') setOpen(false);
+      });
+    </script>
   </body>
 </html>

@@ -1,14 +1,6 @@
 ---
 import DynamicKPIs from './DynamicKPIs.jsx';
-
-const nodes = [
-  { icon: '⚡', name: 'Project Lab', tagline: 'Archive of shipped projects & analyses delivered', href: '/project-lab' },
-  { icon: '🏆', name: 'Trophy Room', tagline: 'Degrees, certifications & skills unlocked', href: '/trophy-room' },
-  { icon: '👤', name: 'Character Card', tagline: 'My player profile: class, stats & special abilities', href: '/character-card' },
-  { icon: '📡', name: 'Comms Nexus', tagline: 'Connect & collaborate', href: '/comms' },
-  { icon: '🧠', name: 'Neural Core', tagline: 'Ask, learn, explore', href: '/neural-core', badge: 'Phase 2' },
-  { icon: '❓', name: 'Mystery Zone', tagline: 'Coming soon...', href: null, badge: 'Locked' },
-];
+import { NODES } from '../data/nodes.js';
 ---
 
 <section class="hub-container">
@@ -21,7 +13,7 @@ const nodes = [
   <DynamicKPIs client:load />
 
   <nav class="hub-grid" aria-label="Nodes">
-    {nodes.map((node, index) => {
+    {NODES.map((node) => {
       const Tag = node.href ? 'a' : 'div';
       return (
         <Tag
@@ -30,7 +22,7 @@ const nodes = [
           aria-disabled={node.href ? undefined : 'true'}
         >
           <span class="cuarto-icon" aria-hidden="true">{node.icon}</span>
-          <span class="node-id">Node {String(index + 1).padStart(2, '0')}</span>
+          <span class="node-id">Node {node.id}</span>
           <h2>{node.name}</h2>
           <p>"{node.tagline}"</p>
           {node.badge && <span class="cuarto-badge">{node.badge}</span>}

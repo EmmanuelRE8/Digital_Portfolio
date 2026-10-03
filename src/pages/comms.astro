@@ -1,0 +1,184 @@
+---
+import fs from 'node:fs';
+import PortfolioLayout from '../layouts/PortfolioLayout.astro';
+
+// The CV card turns on automatically once public/cv.pdf exists
+const hasCv = fs.existsSync(new URL('../../public/cv.pdf', import.meta.url));
+const EMAIL = 'emmanuel.ruedaescalona@ontariotechu.net';
+
+const channels = [
+  {
+    id: 'cv',
+    icon: '📄',
+    title: 'Resume / CV',
+    description: hasCv ? 'Download my full resume' : 'PDF uploading soon',
+    cta: hasCv ? 'Download PDF →' : 'Coming soon',
+    href: hasCv ? '/cv.pdf' : null,
+    download: true,
+    tone: 'blue',
+  },
+  {
+    id: 'github',
+    icon: '💻',
+    title: 'GitHub',
+    description: 'Code, notebooks & experiments',
+    cta: 'Visit GitHub →',
+    href: 'https://github.com/EmmanuelRE8',
+    external: true,
+    tone: 'blue',
+  },
+  {
+    id: 'linkedin',
+    icon: '🔗',
+    title: 'LinkedIn',
+    description: "Let's connect professionally",
+    cta: 'View profile →',
+    href: 'https://linkedin.com/in/emmanuelre',
+    external: true,
+    tone: 'pink',
+  },
+  {
+    id: 'email',
+    icon: '✉️',
+    title: 'Email',
+    description: EMAIL,
+    cta: 'Send email →',
+    href: `mailto:${EMAIL}`,
+    tone: 'pink',
+  },
+];
+---
+
+<PortfolioLayout title="Comms Nexus">
+  <div class="node-container">
+    <header class="node-header">
+      <p class="hub-eyebrow">// node 04</p>
+      <h1>📡 Comms Nexus</h1>
+      <p>Connect & collaborate. Open to Data Analytics, BI and Data Science roles across Canada.</p>
+    </header>
+
+    <div class="comms-grid">
+      {channels.map((channel) => {
+        const Tag = channel.href ? 'a' : 'div';
+        return (
+          <Tag
+            id={channel.id}
+            href={channel.href ?? undefined}
+            target={channel.external ? '_blank' : undefined}
+            rel={channel.external ? 'noopener noreferrer' : undefined}
+            download={channel.href && channel.download ? '' : undefined}
+            class:list={['comms-card', 'glass-card', `tone-${channel.tone}`, { 'is-disabled': !channel.href }]}
+          >
+            <span class="comms-icon" aria-hidden="true">{channel.icon}</span>
+            <h2>{channel.title}</h2>
+            <p>{channel.description}</p>
+            <span class="cta">{channel.cta}</span>
+          </Tag>
+        );
+      })}
+    </div>
+
+    <p class="comms-status">
+      <span class="signal" aria-hidden="true"></span> Signal strong · usually replies within 48 h
+    </p>
+  </div>
+</PortfolioLayout>
+
+<style>
+  .comms-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+    gap: 1.25rem;
+  }
+
+  .comms-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    scroll-margin-top: 5rem;
+  }
+
+  a.comms-card:hover {
+    transform: translateY(-4px);
+  }
+
+  .tone-blue:hover,
+  .tone-blue:target {
+    border-color: rgba(0, 212, 255, 0.6);
+    box-shadow: var(--glow-blue);
+  }
+
+  .tone-pink:hover {
+    border-color: rgba(240, 33, 159, 0.6);
+    box-shadow: var(--glow-pink);
+  }
+
+  .comms-icon {
+    font-size: 3rem;
+  }
+
+  .comms-card h2 {
+    font-size: 1.35rem;
+    margin: 0;
+  }
+
+  .comms-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+  }
+
+  .cta {
+    margin-top: 0.5rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--neon-blue);
+    transition: color 0.3s ease;
+  }
+
+  a.comms-card:hover .cta {
+    color: var(--neon-pink);
+  }
+
+  .comms-card.is-disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+
+  .comms-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+  }
+
+  .signal {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--accent-emerald);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.6);
+    animation: ping 2s infinite;
+  }
+
+  @keyframes ping {
+    70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .signal {
+      animation: none;
+    }
+  }
+</style>
