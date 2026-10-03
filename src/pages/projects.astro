@@ -1,0 +1,498 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Projects">
+  <main>
+    <section class="projects-hero">
+      <div class="container">
+        <h1>My Work</h1>
+        <p>A selection of professional and academic projects that showcase my expertise in data analytics, BI, and AI.</p>
+      </div>
+    </section>
+
+    <!-- Professional Projects -->
+    <section class="projects-section">
+      <div class="container">
+        <h2>Professional Projects</h2>
+        
+        <div class="projects-grid">
+          <!-- BEATS -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>BEATS System</h3>
+              <span class="project-type">Process Automation</span>
+            </div>
+            <p class="company">Ticketmaster | Mexico & LatAm</p>
+            <div class="project-description">
+              <p>
+                Designed and led implementation of BEATS (BI Effectiveness and Automation Tracking System),
+                a comprehensive BI request management platform using Smartsheet, automated forms, and intelligent triage.
+              </p>
+              <ul>
+                <li>Reduced average delivery time by 2 days</li>
+                <li>Improved effectiveness from 80% to 98%</li>
+                <li>Automated request routing and status tracking</li>
+                <li>Implemented feedback loops and performance monitoring</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Smartsheet</span>
+              <span class="tag">Automation</span>
+              <span class="tag">Process Design</span>
+              <span class="tag">Leadership</span>
+            </div>
+          </div>
+
+          <!-- Cloud Migration -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Ticketmaster Cloud & Data Migration</h3>
+              <span class="project-type">Data Engineering</span>
+            </div>
+            <p class="company">Ticketmaster | Mexico</p>
+            <div class="project-description">
+              <p>
+                Led end-to-end migration from SQL Server on-premises to Databricks & BigQuery, 
+                enabling governed analytics and improving data quality significantly.
+              </p>
+              <ul>
+                <li>Migrated 2017–2024 historical data (~multi-TB dataset)</li>
+                <li>Improved data accuracy: 80% → 99%</li>
+                <li>Implemented PySpark ETL pipelines</li>
+                <li>Designed governance framework and data quality checks</li>
+                <li>Automated Box integration for data ingestion</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Databricks</span>
+              <span class="tag">BigQuery</span>
+              <span class="tag">PySpark</span>
+              <span class="tag">Data Quality</span>
+            </div>
+          </div>
+
+          <!-- Pricing Analytics -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Pricing & Revenue Analytics</h3>
+              <span class="project-type">Advanced Analytics</span>
+            </div>
+            <p class="company">Ticketmaster | Mexico</p>
+            <div class="project-description">
+              <p>
+                Developed comprehensive pricing elasticity and revenue optimization models,
+                analyzing substitution effects between ticket tiers and promotional impacts.
+              </p>
+              <ul>
+                <li>Elasticity analysis across ticket categories</li>
+                <li>Promotion effectiveness measurement</li>
+                <li>Revenue forecasting and scenario modeling</li>
+                <li>Dynamic pricing recommendations</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Pricing Analytics</span>
+              <span class="tag">Python</span>
+              <span class="tag">Statistics</span>
+              <span class="tag">Forecasting</span>
+            </div>
+          </div>
+
+          <!-- Customer Analytics -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Customer Segmentation & RFM</h3>
+              <span class="project-type">Customer Analytics</span>
+            </div>
+            <p class="company">Ticketmaster | Mexico & LatAm</p>
+            <div class="project-description">
+              <p>
+                Built RFM (Recency, Frequency, Monetary) segmentation and CLV models
+                for customer targeting and personalization strategies.
+              </p>
+              <ul>
+                <li>RFM segmentation for 500k+ customers</li>
+                <li>CLV lifetime value modeling</li>
+                <li>Cohort analysis and churn prediction</li>
+                <li>Funnel and conversion analytics</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">RFM</span>
+              <span class="tag">CLV</span>
+              <span class="tag">Segmentation</span>
+              <span class="tag">GA4</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Academic Projects -->
+    <section class="projects-section academic">
+      <div class="container">
+        <h2>Academic & Capstone Projects</h2>
+        
+        <div class="projects-grid">
+          <!-- Semantic AI Framework -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Semantic AI Framework</h3>
+              <span class="project-type">Capstone — AI/ML</span>
+            </div>
+            <p class="company">Ontario Tech University | Applied Integrative Analytics</p>
+            <div class="project-description">
+              <p>
+                Capstone project: AI-powered contextual job matching system with explainable recommendations,
+                fine-tuned NLP embeddings, and responsible AI safeguards.
+              </p>
+              <ul>
+                <li>Fine-tuned MiniLM embeddings (SSI: 0.593)</li>
+                <li>Candidate profiling & job deduplication</li>
+                <li>Cosine similarity ranking & top-K recommendations</li>
+                <li>Explainability & fairness guardrails</li>
+                <li>Zero automated hiring/rejection; human oversight mandatory</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">NLP</span>
+              <span class="tag">Embeddings</span>
+              <span class="tag">AI/ML</span>
+              <span class="tag">Responsible AI</span>
+            </div>
+          </div>
+
+          <!-- Retail Analytics -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Retail & Customer Behaviour Analytics</h3>
+              <span class="project-type">Data Analysis — Team Project</span>
+            </div>
+            <p class="company">Ontario Tech University | Final Project</p>
+            <div class="project-description">
+              <p>
+                Multi-source retail analytics combining primary dataset (300k+ records) 
+                with Kaggle multi-year retail data for trend, seasonality, and forecasting analysis.
+              </p>
+              <ul>
+                <li>Primary dataset: customer, product, demographic analysis</li>
+                <li>Kaggle integration: multi-year trends and seasonality</li>
+                <li>Revenue forecasting and trend analysis</li>
+                <li>Customer & product segmentation</li>
+                <li>Deliverables: paper, Jupyter notebooks, datasets, presentation</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Python</span>
+              <span class="tag">Pandas</span>
+              <span class="tag">Forecasting</span>
+              <span class="tag">Statistics</span>
+            </div>
+          </div>
+
+          <!-- Diabetes Risk Analysis -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Diabetes Risk Analysis</h3>
+              <span class="project-type">Statistical Analysis</span>
+            </div>
+            <p class="company">Ontario Tech University | Coursework</p>
+            <div class="project-description">
+              <p>
+                Comprehensive statistical analysis of clinical and demographic risk factors for diabetes,
+                with rigorous outlier handling and prevention of data leakage.
+              </p>
+              <ul>
+                <li>Clinical & lifestyle variable analysis</li>
+                <li>Regression modeling with interpretation</li>
+                <li>Thoughtful outlier handling (clinical validity vs. errors)</li>
+                <li>Business outcome communication</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Statistics</span>
+              <span class="tag">Python</span>
+              <span class="tag">Regression</span>
+              <span class="tag">Data Cleaning</span>
+            </div>
+          </div>
+
+          <!-- NLP Job Classification -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>NLP Job Classification</h3>
+              <span class="project-type">Natural Language Processing</span>
+            </div>
+            <p class="company">Ontario Tech University | Coursework</p>
+            <div class="project-description">
+              <p>
+                NLP-based job vacancy classification system with 93% accuracy,
+                demonstrating text processing and ML classification techniques.
+              </p>
+              <ul>
+                <li>Text preprocessing & feature extraction</li>
+                <li>Classification model training and validation</li>
+                <li>93% accuracy on job classification</li>
+                <li>Cross-validation and performance metrics</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">NLP</span>
+              <span class="tag">Scikit-learn</span>
+              <span class="tag">Text Processing</span>
+              <span class="tag">Classification</span>
+            </div>
+          </div>
+
+          <!-- Time Series Forecasting -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Time-Series Forecasting</h3>
+              <span class="project-type">Forecasting & Statistics</span>
+            </div>
+            <p class="company">Ontario Tech University | Coursework</p>
+            <div class="project-description">
+              <p>
+                Implementation of classical time-series forecasting methods including
+                exponential smoothing and Holt's method with validation.
+              </p>
+              <ul>
+                <li>Simple & Double Exponential Smoothing</li>
+                <li>Holt's method for trend-based forecasting</li>
+                <li>Cross-validation and accuracy metrics</li>
+                <li>Model selection and comparison</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Forecasting</span>
+              <span class="tag">Time Series</span>
+              <span class="tag">Statistics</span>
+              <span class="tag">Python</span>
+            </div>
+          </div>
+
+          <!-- Location Recommendation -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Location Recommendation Platform</h3>
+              <span class="project-type">Recommendation Systems</span>
+            </div>
+            <p class="company">Ontario Tech University | Coursework</p>
+            <div class="project-description">
+              <p>
+                Recommendation system for location discovery using 834k+ records,
+                leveraging collaborative filtering and similarity-based approaches.
+              </p>
+              <ul>
+                <li>Large-scale dataset processing (834k+ records)</li>
+                <li>Similarity metrics and ranking</li>
+                <li>Recommendation algorithm development</li>
+                <li>Performance evaluation & metrics</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Recommendation Systems</span>
+              <span class="tag">Python</span>
+              <span class="tag">Algorithms</span>
+              <span class="tag">Big Data</span>
+            </div>
+          </div>
+
+          <!-- Data Visualization Portfolio -->
+          <div class="project-card">
+            <div class="project-header">
+              <h3>Data Visualization Portfolio</h3>
+              <span class="project-type">Data Storytelling</span>
+            </div>
+            <p class="company">Ontario Tech University | Course Portfolio</p>
+            <div class="project-description">
+              <p>
+                Curated collection of data visualization projects including infographics,
+                scrollytelling narratives, and interactive data stories.
+              </p>
+              <ul>
+                <li>Data comics & storyboards (live music revenue)</li>
+                <li>Historical infographic redesign (Minard's Napoleon map)</li>
+                <li>Long-form explainer infographics</li>
+                <li>Interactive scrollytelling experiences</li>
+              </ul>
+            </div>
+            <div class="tags">
+              <span class="tag">Data Viz</span>
+              <span class="tag">Storytelling</span>
+              <span class="tag">Infographics</span>
+              <span class="tag">HTML/CSS</span>
+            </div>
+            <a href="https://emmanuelre8.github.io/DataViz-Portfolio/" target="_blank" class="project-link">View Portfolio →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="projects-cta">
+      <div class="container">
+        <h2>Want to Learn More?</h2>
+        <p>Check out my PAIR Bot for detailed questions about any project, or visit my GitHub for code samples.</p>
+        <div class="cta-buttons">
+          <a href="https://emmanuelre8.github.io/PAIR_Bot/" target="_blank" class="btn">Ask PAIR Bot</a>
+          <a href="https://github.com/EmmanuelRE8" target="_blank" class="btn btn-secondary">GitHub</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .projects-hero {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, rgba(245, 158, 11, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+  }
+
+  .projects-hero h1 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+  }
+
+  .projects-section {
+    padding: 6rem 0;
+  }
+
+  .projects-section h2 {
+    margin-bottom: 3rem;
+  }
+
+  .academic {
+    background: var(--color-bg-secondary);
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: var(--color-bg-secondary);
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    padding: 2rem;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .project-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: 0 8px 24px rgba(245, 158, 11, 0.15);
+    transform: translateY(-6px);
+  }
+
+  .project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    margin-bottom: 0.5rem;
+    gap: 1rem;
+  }
+
+  .project-header h3 {
+    flex: 1;
+    margin: 0;
+  }
+
+  .project-type {
+    display: inline-block;
+    background: rgba(245, 158, 11, 0.15);
+    color: var(--color-accent);
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    white-space: nowrap;
+  }
+
+  .company {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1rem;
+  }
+
+  .project-description {
+    flex: 1;
+  }
+
+  .project-description p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+
+  .project-description ul {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+  }
+
+  .project-description li {
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+  }
+
+  .project-description li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+  }
+
+  .project-link {
+    display: inline-block;
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+
+  .project-link:hover {
+    text-decoration: underline;
+  }
+
+  .projects-cta {
+    padding: 4rem 0;
+    text-align: center;
+    background: var(--color-bg-secondary);
+  }
+
+  .projects-cta h2 {
+    margin-bottom: 1rem;
+  }
+
+  .projects-cta > .container > p {
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .cta-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 768px) {
+    .projects-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .project-header {
+      flex-direction: column;
+    }
+
+    .project-type {
+      align-self: flex-start;
+    }
+  }
+</style>

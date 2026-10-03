@@ -1,0 +1,45 @@
+---
+import StarfieldBackground from '../components/StarfieldBackground.jsx';
+import '../styles/portfolio.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Hub',
+  description = "Emmanuel Rueda's Data Analytics & BI Portfolio",
+} = Astro.props;
+
+// Side columns only render when a page fills them (map + Mr Code arrive in Session 3)
+const hasMap = Astro.slots.has('map');
+const hasGuide = Astro.slots.has('guide');
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title} — Emmanuel Rueda</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500..700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="portfolio-container">
+      <StarfieldBackground client:load />
+      <div class:list={['portfolio-shell', { 'has-map': hasMap, 'has-guide': hasGuide }]}>
+        {hasMap && <aside class="portfolio-map"><slot name="map" /></aside>}
+        <main class="portfolio-main"><slot /></main>
+        {hasGuide && <aside class="portfolio-guide"><slot name="guide" /></aside>}
+      </div>
+    </div>
+  </body>
+</html>

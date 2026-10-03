@@ -1,0 +1,46 @@
+---
+import DynamicKPIs from './DynamicKPIs.jsx';
+
+const cuartos = [
+  { icon: '🔬', name: 'Laboratorio de Proyectos', description: 'Experiments, dashboards and data products built in the lab.', href: '/proyecto' },
+  { icon: '🏆', name: 'Sala de Trofeos', description: 'Degrees, languages and skills unlocked along the way.', href: '/trofeos' },
+  { icon: '👤', name: 'Carta de Perfil', description: 'Who I am, how I think and the roles I play on a team.', href: '/perfil' },
+  { icon: '📡', name: 'Sala de Comunicaciones', description: 'Open a channel: CV, GitHub, LinkedIn and email.', href: '/comunicaciones' },
+  { icon: '🧠', name: 'Sala de Cerebro', description: 'The neural core where Mr Code lives.', href: '/bot', badge: 'Fase 2' },
+  { icon: '❓', name: 'Bonus', description: 'Classified. Access pending…', href: null, badge: 'Locked' },
+];
+---
+
+<section class="hub-container">
+  <header class="hub-header">
+    <p class="hub-eyebrow">// system online</p>
+    <h1>Welcome to Emmanuel's Space</h1>
+    <p>Navigate the system. Each room holds a different part of my story — pick a door.</p>
+  </header>
+
+  <DynamicKPIs client:load />
+
+  <nav class="hub-grid" aria-label="Rooms">
+    {cuartos.map((cuarto) => {
+      const Tag = cuarto.href ? 'a' : 'div';
+      return (
+        <Tag
+          href={cuarto.href ?? undefined}
+          class:list={['cuarto-card', { 'cuarto-card--locked': !cuarto.href }]}
+          aria-disabled={cuarto.href ? undefined : 'true'}
+        >
+          <span class="cuarto-icon" aria-hidden="true">{cuarto.icon}</span>
+          <h2>{cuarto.name}</h2>
+          <p>{cuarto.description}</p>
+          {cuarto.badge && <span class="cuarto-badge">{cuarto.badge}</span>}
+        </Tag>
+      );
+    })}
+  </nav>
+
+  <div class="hub-actions">
+    <a href="/comunicaciones#cv" class="hub-btn hub-btn--primary">CV</a>
+    <a href="/bot" class="hub-btn">Mr Code</a>
+    <a href="/comunicaciones" class="hub-btn">Contact</a>
+  </div>
+</section>
